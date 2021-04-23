@@ -21,5 +21,8 @@ def generate_train_step(dataset_name, model_name):
     # Calculating the accuracy of the model
     accuracy = calculate_accuracy(predictions, labels)
     
-    # Outputs the predictions and the accuracy of the model
-    return predictions, accuracy
+    # Saving the prediction and score as results
+    result = {}
+    result['predictions'] = predictions.tolist()
+    result['accuracy'] = accuracy
+    save_json(result, 'result.json')
