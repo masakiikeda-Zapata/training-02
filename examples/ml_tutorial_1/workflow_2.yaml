@@ -9,13 +9,13 @@ imports:
 - name: sklearn-component
   type: git
   parameters:
-    repository: "git@github.com:<github_account>/training-02.git"
+    repository: "git@github.com:masakiikeda-Zapata/training-02.git"
     branch: "master"
 
 steps:
 
 # This step runs the step that trains the model
-- name: perceptron-training
+- name: perceptron-simple-training
   config:
     runtime:
       language: python3
@@ -27,6 +27,91 @@ steps:
     - dataset_name: "simple_dataset"
       type: string
     - model_name: "perceptron"
+      type: string
+  outputs:
+  - name: result
+    type: output_type
+
+- name: perceptron-square-training
+  config:
+    runtime:
+      language: python3
+      imports: [sklearn-component]
+      parameters:
+        file: sklearn-component/steps/ml_tutorial_step.py
+        function: generate_train_step
+  inputs:
+    - dataset_name: "square_dataset"
+      type: string
+    - model_name: "perceptron"
+      type: string
+  outputs:
+  - name: result
+    type: output_type
+
+- name: decisiontree-simple-training
+  config:
+    runtime:
+      language: python3
+      imports: [sklearn-component]
+      parameters:
+        file: sklearn-component/steps/ml_tutorial_step.py
+        function: generate_train_step
+  inputs:
+    - dataset_name: "simple_dataset"
+      type: string
+    - model_name: "decisiontree"
+      type: string
+  outputs:
+  - name: result
+    type: output_type
+
+- name: decisiontree-square-training
+  config:
+    runtime:
+      language: python3
+      imports: [sklearn-component]
+      parameters:
+        file: sklearn-component/steps/ml_tutorial_step.py
+        function: generate_train_step
+  inputs:
+    - dataset_name: "square_dataset"
+      type: string
+    - model_name: "decisiontree"
+      type: string
+  outputs:
+  - name: result
+    type: output_type
+
+- name: svm-simple-training
+  config:
+    runtime:
+      language: python3
+      imports: [sklearn-component]
+      parameters:
+        file: sklearn-component/steps/ml_tutorial_step.py
+        function: generate_train_step
+  inputs:
+    - dataset_name: "simple_dataset"
+      type: string
+    - model_name: "svm"
+      type: string
+  outputs:
+  - name: result
+    type: output_type
+
+- name: svm-square-training
+  config:
+    runtime:
+      language: python3
+      imports: [sklearn-component]
+      parameters:
+        file: sklearn-component/steps/ml_tutorial_step.py
+        function: generate_train_step
+  inputs:
+    - dataset_name: "square_dataset"
+      type: string
+    - model_name: "svm"
       type: string
   outputs:
   - name: result
